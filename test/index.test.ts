@@ -1,5 +1,7 @@
 import Cache from "../src"
 
+const keyNotFoundErrorMessage = "CacheError: key not found"
+
 describe("Cache module", () => {
   let cache: Cache
 
@@ -13,14 +15,15 @@ describe("Cache module", () => {
   })
 
   it("get", () => {
-    expect(() => cache.get("user")).toThrow("CacheError: key not found")
+    expect(() => cache.get("user")).toThrow(keyNotFoundErrorMessage)
     cache.set("count", 0)
     expect(cache.get("count")).toBe(0)
   })
 
   it("remove", () => {
+    expect(() => cache.remove("foo")).toThrow(keyNotFoundErrorMessage)
     cache.set("isAdmin", true)
     cache.remove("isAdmin")
-    expect(() => cache.get("isAdmin")).toThrow("CacheError: key not found")
+    expect(() => cache.get("isAdmin")).toThrow(keyNotFoundErrorMessage)
   })
 })
