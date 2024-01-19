@@ -1,6 +1,6 @@
 # Simple Cache
 
-> A very basic key-value pair cache
+A very basic key-value pair cache
 
 ## Installation
 
