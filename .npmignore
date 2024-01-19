@@ -8,3 +8,8 @@
 # development purposes
 tsconfig.json
 tsup.config.ts
+
+# test
+/test
+/coverage
+babel.config.cjs
