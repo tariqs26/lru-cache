@@ -14,7 +14,7 @@ export default class Cache {
   get(key: string): CacheValue {
     const value = this.cache[key]
 
-    if (value === undefined) throw new Error("CacheError: key not found")
+    if (value === undefined) throw new CacheError("key not found")
 
     return value
   }
@@ -33,6 +33,14 @@ export default class Cache {
    * @param {PropertyKey} key - Key for the entry
    */
   remove(key: PropertyKey) {
+    if (this.cache[key] === undefined) throw new CacheError("key not found")
+
     delete this.cache[key]
+  }
+}
+
+export class CacheError extends Error {
+  constructor(message: string) {
+    super("CacheError: " + message)
   }
 }
