@@ -1,0 +1,25 @@
+{
+  "name": "simple-kv-cache",
+  "version": "0.0.1",
+  "description": "A very basic key-value pair cache",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [
+    "cache",
+    "key-value"
+  ],
+  "author": "saadt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tariqs26/simple-cache.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}

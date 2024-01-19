@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    /* Base options*/
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2022",
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+
+    /* Strictness */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+
+    /* Transpilation */
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "declaration": true,
+    "noEmit": true,
+    "outDir": "dist",
+    "rootDir": "src",
+
+    /* Style */
+    "forceConsistentCasingInFileNames": true,
+
+    /* Libraries */
+    "lib": ["ES2022"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

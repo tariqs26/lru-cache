@@ -1,0 +1,10 @@
+/src
+/node_modules
+
+.env
+
+/.vscode
+
+# development purposes
+tsconfig.json
+tscup.config.ts
