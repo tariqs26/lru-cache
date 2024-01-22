@@ -1,19 +1,11 @@
 import { CacheSync } from "../abstract-classes"
-import { DLL, DLLNode } from "../data-structures/dll"
-import type { CacheValue } from "../types"
+import { DLLNode } from "../data-structures/dll-node"
+import { DLL } from "../data-structures/dll"
+import type { CacheDLLData, CacheValue } from "../types"
 
 export class LRUCache extends CacheSync {
-  private readonly cache: Record<PropertyKey, DLLNode> = {}
-  private readonly list: DLL = new DLL()
-
-  get(key: PropertyKey) {
-    const currentNode = this.cache[key]
-    if (currentNode !== undefined) {
-      this.list.remove(currentNode)
-      this.list.insert(key, currentNode.value)
-      return currentNode.value
-    }
-  }
+  protected readonly cache: Record<PropertyKey, DLLNode<CacheDLLData>> = {}
+  protected readonly list: DLL<CacheDLLData> = new DLL()
 
   set(key: PropertyKey, value: CacheValue) {
     const currentNode = this.cache[key]
@@ -21,15 +13,28 @@ export class LRUCache extends CacheSync {
     if (currentNode !== undefined) this.list.remove(currentNode)
     else this._capacity++
 
-    this.cache[key] = this.list.insert(key, value)
+    this.cache[key] = this.list.insert({ key, value })
 
+    this.evict()
+  }
+
+  protected evict() {
     if (this.capacity > this.options.maxCapacity) {
-      const removalKey = this.list.removeTail()
+      const removalData = this.list.removeTail()
 
-      if (removalKey) {
-        delete this.cache[removalKey]
+      if (removalData !== undefined) {
+        delete this.cache[removalData.key]
         this._capacity--
       }
+    }
+  }
+
+  get(key: PropertyKey) {
+    const currentNode = this.cache[key]
+    if (currentNode !== undefined) {
+      this.list.remove(currentNode)
+      this.list.insert(currentNode.data)
+      return currentNode.data.value
     }
   }
 
