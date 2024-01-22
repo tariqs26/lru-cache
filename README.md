@@ -5,7 +5,7 @@ Collection of key-value pair cache implementations
 Implementations include:
 
 - Simple cache using hashmap
-- LRU cache implemented using a hashmap with doubly linked list
+- FIFO, LRU and MRU caches implemented using a hashmap with doubly linked list
 
 ## Installation
 
