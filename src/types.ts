@@ -13,3 +13,8 @@ export type CacheOptions = {
 }
 
 export type CachePromise = Promise<CacheValue | undefined>
+
+export type CacheDLLData = {
+  key: PropertyKey
+  value: CacheValue
+}
