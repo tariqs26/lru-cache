@@ -1,6 +1,6 @@
 {
   "name": "simple-kv-cache",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Collection of key-value pair cache implementations",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
