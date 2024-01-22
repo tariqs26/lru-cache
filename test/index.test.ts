@@ -1,29 +1,42 @@
-import Cache from "../src"
-
-const keyNotFoundErrorMessage = "CacheError: key not found"
+import { SimpleCache, LRUCache } from "../src"
+import { CacheSync } from "../src/abstract-classes"
 
 describe("Cache module", () => {
-  let cache: Cache
+  let caches: CacheSync[]
 
   beforeEach(() => {
-    cache = new Cache()
+    caches = [new SimpleCache(), new LRUCache()]
   })
 
   it("set", () => {
-    cache.set("users", [{ id: 1, name: "John doe" }])
-    expect(cache.get("users")).toStrictEqual([{ id: 1, name: "John doe" }])
+    for (const cache of caches) {
+      cache.set("users", [{ id: 1, name: "John doe" }])
+      expect(cache.get("users")).toStrictEqual([{ id: 1, name: "John doe" }])
+      expect(cache.capacity).toBe(1)
+      cache.set("users", [])
+      expect(cache.get("users")).toStrictEqual([])
+      cache.set("enabled", true)
+      expect(cache.get("enabled")).toBe(true)
+      expect(cache.capacity).toBe(2)
+    }
   })
 
   it("get", () => {
-    expect(() => cache.get("user")).toThrow(keyNotFoundErrorMessage)
-    cache.set("count", 0)
-    expect(cache.get("count")).toBe(0)
+    for (const cache of caches) {
+      expect(cache.get("user")).toBeUndefined()
+      cache.set("count", 0)
+      expect(cache.get("count")).toBe(0)
+    }
   })
 
   it("remove", () => {
-    expect(() => cache.remove("foo")).toThrow(keyNotFoundErrorMessage)
-    cache.set("isAdmin", true)
-    cache.remove("isAdmin")
-    expect(() => cache.get("isAdmin")).toThrow(keyNotFoundErrorMessage)
+    for (const cache of caches) {
+      cache.set("count", 0)
+      cache.remove("count")
+      expect(cache.get("count")).toBeUndefined()
+      expect(cache.capacity).toBe(0)
+      cache.remove("key_not_in_cache")
+      expect(cache.capacity).toBe(0)
+    }
   })
 })
