@@ -7,3 +7,9 @@ type CacheObject = {
 }
 
 export type CacheValue = CachePrimitives | CacheArray | CacheObject
+
+export type CacheOptions = {
+  maxCapacity: number
+}
+
+export type CachePromise = Promise<CacheValue | undefined>
