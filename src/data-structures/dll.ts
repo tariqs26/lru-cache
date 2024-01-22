@@ -2,8 +2,8 @@ import { DLLNode } from "./dll-node"
 
 export class DLL<T> {
   constructor(
-    private head: DLLNode<T> | null = null,
-    private tail: DLLNode<T> | null = null
+    public head: DLLNode<T> | null = null,
+    public tail: DLLNode<T> | null = null
   ) {
     this.head = head
     this.tail = tail
