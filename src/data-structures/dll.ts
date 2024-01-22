@@ -64,33 +64,53 @@ export class DLL<T> {
 
     const prevNode = node.prev
     const nextNode = node.next
+
     if (prevNode) prevNode.next = nextNode
     if (nextNode) nextNode.prev = prevNode
-  }
-
-  removeTail() {
-    if (this.tail !== null) {
-      const prevNode = this.tail.prev
-      const prevData = this.tail.data
-      this.tail = null
-      if (prevNode !== null) {
-        prevNode.next = null
-        this.tail = prevNode
-      }
-      return prevData
-    }
   }
 
   removeHead() {
     if (this.head !== null) {
       const nextNode = this.head.next
       const headData = this.head.data
+
+      if (this.tail === this.head) this.tail = null
       this.head = null
+
       if (nextNode !== null) {
         nextNode.prev = null
         this.head = nextNode
       }
+
       return headData
     }
+  }
+
+  removeTail() {
+    if (this.tail !== null) {
+      const prevNode = this.tail.prev
+      const tailData = this.tail.data
+
+      if (this.tail === this.head) this.head = null
+      this.tail = null
+
+      if (prevNode !== null) {
+        prevNode.next = null
+        this.tail = prevNode
+      }
+
+      return tailData
+    }
+  }
+
+  size() {
+    let [current, size] = [this.head, 0]
+
+    while (current !== null) {
+      size++
+      current = current.next
+    }
+
+    return size
   }
 }
