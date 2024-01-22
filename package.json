@@ -1,7 +1,7 @@
 {
   "name": "simple-kv-cache",
   "version": "0.0.4",
-  "description": "A very basic key-value pair cache",
+  "description": "Collection of key-value pair cache implementations",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -12,6 +12,9 @@
   },
   "keywords": [
     "cache",
+    "fifo",
+    "lru",
+    "mru",
     "key-value"
   ],
   "author": "saadt",
