@@ -49,4 +49,8 @@ export abstract class CacheSync extends BaseCache {
    * @param {PropertyKey} key - Key for the entry
    */
   abstract remove(key: PropertyKey): void
+  /**
+   * Remove all entries from cache
+   */
+  abstract clear(): void
 }

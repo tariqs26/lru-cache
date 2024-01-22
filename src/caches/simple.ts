@@ -2,7 +2,7 @@ import { CacheSync } from "../abstract-classes"
 import { CacheValue } from "../types"
 
 export class SimpleCache extends CacheSync {
-  private readonly cache: Record<PropertyKey, CacheValue> = {}
+  private cache: Record<PropertyKey, CacheValue> = {}
 
   set(key: PropertyKey, value: CacheValue) {
     const exists = this.cache[key]
@@ -23,5 +23,10 @@ export class SimpleCache extends CacheSync {
       this._capacity--
       delete this.cache[key]
     }
+  }
+
+  clear() {
+    this.cache = {}
+    this._capacity = 0
   }
 }

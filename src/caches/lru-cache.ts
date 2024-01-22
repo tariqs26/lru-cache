@@ -4,8 +4,8 @@ import { DLL } from "../data-structures/dll"
 import type { CacheDLLData, CacheValue } from "../types"
 
 export class LRUCache extends CacheSync {
-  protected readonly cache: Record<PropertyKey, DLLNode<CacheDLLData>> = {}
-  protected readonly list: DLL<CacheDLLData> = new DLL()
+  protected cache: Record<PropertyKey, DLLNode<CacheDLLData>> = {}
+  protected list: DLL<CacheDLLData> = new DLL()
 
   set(key: PropertyKey, value: CacheValue) {
     const currentNode = this.cache[key]
@@ -45,5 +45,11 @@ export class LRUCache extends CacheSync {
       delete this.cache[key]
       this._capacity--
     }
+  }
+
+  clear() {
+    this.cache = {}
+    this.list = new DLL()
+    this._capacity = 0
   }
 }
