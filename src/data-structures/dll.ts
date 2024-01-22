@@ -1,30 +1,16 @@
-import { CacheValue } from "../types"
+import { DLLNode } from "./dll-node"
 
-export class DLLNode {
+export class DLL<T> {
   constructor(
-    public key: PropertyKey,
-    public value: CacheValue,
-    public prev: DLLNode | null = null,
-    public next: DLLNode | null = null
-  ) {
-    this.key = key
-    this.value = value
-    this.prev = prev
-    this.next = next
-  }
-}
-
-export class DLL {
-  constructor(
-    private head: DLLNode | null = null,
-    private tail: DLLNode | null = null
+    private head: DLLNode<T> | null = null,
+    private tail: DLLNode<T> | null = null
   ) {
     this.head = head
     this.tail = tail
   }
 
-  insert(key: PropertyKey, value: CacheValue) {
-    const newNode = new DLLNode(key, value)
+  insert(data: T) {
+    const newNode = new DLLNode<T>(data)
 
     if (this.head === null && this.tail === null) {
       this.head = this.tail = newNode
@@ -38,7 +24,7 @@ export class DLL {
     return newNode
   }
 
-  remove(node: DLLNode) {
+  remove(node: DLLNode<T>) {
     if (this.head === null || this.tail === null) return
 
     if (this.head === this.tail) {
@@ -68,27 +54,28 @@ export class DLL {
   }
 
   removeTail() {
-    if (this.tail !== null && this.head !== this.tail) {
+    if (this.tail !== null) {
       const prevNode = this.tail.prev
-      const prevKey = this.tail.key
+      const prevData = this.tail.data
       this.tail = null
       if (prevNode !== null) {
         prevNode.next = null
         this.tail = prevNode
       }
-      return prevKey
+      return prevData
     }
   }
 
-  toString() {
-    let current = this.head
-    let str = ""
-
-    while (current !== null) {
-      str += `(${String(current.key)}:${current.value}) <-> `
-      current = current.next
+  removeHead() {
+    if (this.head !== null) {
+      const nextNode = this.head.next
+      const headData = this.head.data
+      this.head = null
+      if (nextNode !== null) {
+        nextNode.prev = null
+        this.head = nextNode
+      }
+      return headData
     }
-
-    return str + "null"
   }
 }
