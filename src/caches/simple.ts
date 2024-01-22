@@ -3,11 +3,6 @@ import { CacheValue } from "../types"
 
 export class SimpleCache extends CacheSync {
   private readonly cache: Record<PropertyKey, CacheValue> = {}
-  
-
-  get(key: string): CacheValue | undefined {
-    return this.cache[key]
-  }
 
   set(key: PropertyKey, value: CacheValue) {
     const exists = this.cache[key]
@@ -17,9 +12,16 @@ export class SimpleCache extends CacheSync {
     this.cache[key] = value
   }
 
-  remove(key: PropertyKey) {
-    if (this.cache[key] !== undefined) this._capacity--
+  evict() {}
 
-    delete this.cache[key]
+  get(key: string): CacheValue | undefined {
+    return this.cache[key]
+  }
+
+  remove(key: PropertyKey) {
+    if (this.cache[key] !== undefined) {
+      this._capacity--
+      delete this.cache[key]
+    }
   }
 }
