@@ -24,6 +24,21 @@ export class DLL<T> {
     return newNode
   }
 
+  insertAtTail(data: T) {
+    const newNode = new DLLNode<T>(data)
+
+    if (this.head === null && this.tail === null) {
+      this.head = this.tail = newNode
+    } else if (this.tail !== null) {
+      const prev = this.tail
+      newNode.prev = prev
+      prev.next = newNode
+      this.tail = newNode
+    }
+
+    return newNode
+  }
+
   remove(node: DLLNode<T>) {
     if (this.head === null || this.tail === null) return
 
