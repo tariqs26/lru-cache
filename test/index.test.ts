@@ -1,13 +1,18 @@
-import type { CacheOptions } from "../src"
-import { LRUCache, MRUCache, FIFOCache, LFUCache } from "../src"
-import { CacheSync } from "../src/abstract-classes"
+import {
+  type CacheOptions,
+  AbsCache,
+  LRUCache,
+  MRUCache,
+  FIFOCache,
+  LFUCache,
+} from "../src"
 
 const cacheOptions: CacheOptions = {
   maxCapacity: 3,
 }
 
 describe("Cache module", () => {
-  let caches: CacheSync[]
+  let caches: AbsCache[]
 
   beforeEach(() => {
     caches = [

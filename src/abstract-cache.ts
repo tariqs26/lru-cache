@@ -3,7 +3,7 @@ import { CacheOptions, CacheValue } from "./types"
 const MIN_MAX_CAPACITY = 1
 const MAX_MAX_CAPACITY = 1000000
 
-export class BaseCache {
+export abstract class AbsCache {
   protected _capacity: number = 0
   constructor(
     protected options: CacheOptions = {
@@ -22,9 +22,7 @@ export class BaseCache {
   get capacity() {
     return this._capacity
   }
-}
 
-export abstract class CacheSync extends BaseCache {
   /**
    * Create or update entry in cache
    * @param {PropertyKey} key - Key for the entry

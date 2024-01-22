@@ -1,4 +1,4 @@
-import { CacheSync } from "../abstract-classes"
+import { AbsCache } from "../abstract-cache"
 import { DLLNode } from "../data-structures/dll-node"
 import { DLL } from "../data-structures/dll"
 import type { CacheDLLData, CacheValue } from "../types"
@@ -13,7 +13,7 @@ type FrequencyListData = {
   list: DLL<FrequencyData>
 }
 
-export class LFUCache extends CacheSync {
+export class LFUCache extends AbsCache {
   protected cache: Record<PropertyKey, DLLNode<FrequencyData>> = {}
   protected frequencyList: DLL<FrequencyListData> = new DLL()
 
