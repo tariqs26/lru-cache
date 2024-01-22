@@ -1,5 +1,5 @@
 import type { CacheOptions } from "../src"
-import { SimpleCache, LRUCache, MRUCache, FIFOCache, LFUCache } from "../src"
+import { LRUCache, MRUCache, FIFOCache, LFUCache } from "../src"
 import { CacheSync } from "../src/abstract-classes"
 
 const cacheOptions: CacheOptions = {
@@ -11,7 +11,6 @@ describe("Cache module", () => {
 
   beforeEach(() => {
     caches = [
-      new SimpleCache(),
       new FIFOCache(cacheOptions),
       new LRUCache(cacheOptions),
       new MRUCache(cacheOptions),
