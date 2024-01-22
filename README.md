@@ -4,7 +4,7 @@ Collection of key-value pair cache implementations
 
 ## Implementations
 
-All implementations primarily utilize a hashmap to associate keys with doubly linked list nodes, and doubly linked lists to arrange entries according to the respective strategy. This structure enables a constant running time complexity for all methods, including `get`, `set`, `remove`, and `clear`.
+All implementations primarily utilize a hashmap to associate keys with doubly linked list nodes, and doubly linked lists to arrange entries according to the respective strategy. This structure enables a constant running time complexity for all methods, `get`, `set`, `remove`, and `clear`.
 
 - **FIFO**
   - Entries are removed in order of insertion regardless of their access frequency
