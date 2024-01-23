@@ -23,29 +23,28 @@ export class LFUCache extends AbsCache {
     if (currentNode !== undefined) {
       currentNode.data.value = value
       this.updateFrequencyList(currentNode)
-    } else {
-      this._capacity++
-
-      this.evict()
-
-      let currentFrequency = this.frequencyList.head
-
-      if (currentFrequency === null || currentFrequency.data.frequency !== 1) {
-        currentFrequency = this.frequencyList.insert({
-          frequency: 1,
-          list: new DLL(),
-        })
-      }
-
-      const newNode = currentFrequency.data.list.insert({
-        key,
-        value,
-        hits: 1,
-        frequencyNode: currentFrequency,
-      })
-
-      this.cache[key] = newNode
+      return
     }
+
+    this._capacity++
+
+    this.evict()
+
+    let frequencyNode = this.frequencyList.head
+
+    if (frequencyNode === null || frequencyNode.data.frequency !== 1) {
+      frequencyNode = this.frequencyList.insert({
+        frequency: 1,
+        list: new DLL(),
+      })
+    }
+
+    this.cache[key] = frequencyNode.data.list.insert({
+      key,
+      value,
+      hits: 1,
+      frequencyNode,
+    })
   }
 
   protected evict() {
@@ -89,6 +88,7 @@ export class LFUCache extends AbsCache {
 
     if (nextFrequencyNode === null) {
       currentNode.next = currentNode.prev = null
+
       newParentFrequencyNode = this.frequencyList.insertAtTail({
         frequency: currentNode.data.hits,
         list: new DLL(currentNode, currentNode),
@@ -110,9 +110,11 @@ export class LFUCache extends AbsCache {
       currentNodeFrequencyNode.next = newParentFrequencyNode
     } else {
       const newNode = nextFrequencyNode.data.list.insert(currentNode.data)
-      currentNodeFrequencyNode.data.list.remove(currentNode)
-      this.cache[currentNode.data.key] = newNode
       newNode.data.frequencyNode = nextFrequencyNode
+
+      currentNodeFrequencyNode.data.list.remove(currentNode)
+
+      this.cache[currentNode.data.key] = newNode
     }
 
     this.removeEmptyFrequencyNode(currentNodeFrequencyNode)
