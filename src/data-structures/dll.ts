@@ -38,7 +38,7 @@ export class DLL<T> {
   }
 
   remove(node: DLLNode<T>) {
-    if (this.head === null || this.tail === null) return
+    if (this.head === null) return
 
     if (this.head === this.tail) {
       this.head = this.tail = null
