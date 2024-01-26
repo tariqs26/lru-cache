@@ -32,12 +32,7 @@ npm i simple-kv-cache
 ## Usage
 
 ```ts
-import {
-  FIFOCache,
-  LRUCache,
-  MRUCache,
-  LFUCache,
-} from "simple-kv-cache"
+import { FIFOCache, LRUCache, MRUCache, LFUCache } from "simple-kv-cache"
 
 const cache = new LRUCache({
   maxCapacity: 5000, // Specify options
