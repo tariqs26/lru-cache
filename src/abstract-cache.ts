@@ -47,6 +47,7 @@ export abstract class AbsCache {
    * @param {PropertyKey} key - Key for the entry
    */
   abstract remove(key: PropertyKey): void
+  
   /**
    * Remove all entries from cache
    */
