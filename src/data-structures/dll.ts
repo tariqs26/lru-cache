@@ -27,9 +27,9 @@ export class DLL<T> {
   insertAtTail(data: T) {
     const newNode = new DLLNode<T>(data)
 
-    if (this.head === null && this.tail === null) {
+    if (this.head === null && this.tail === null)
       this.head = this.tail = newNode
-    } else if (this.tail !== null) {
+    else if (this.tail !== null) {
       const prev = this.tail
       newNode.prev = prev
       prev.next = newNode
@@ -44,63 +44,32 @@ export class DLL<T> {
 
     if (this.head === this.tail) {
       this.head = this.tail = null
-      return
-    }
-
-    if (node === this.head) {
+    } else if (node === this.head) {
       const nextNode = this.head.next
       this.head = nextNode
-      return
-    }
-
-    if (node === this.tail) {
+    } else if (node === this.tail) {
       const prevNode = this.tail.prev
       if (prevNode) {
         prevNode.next = null
         this.tail = prevNode
       }
-      return
+    } else {
+      const prevNode = node.prev
+      const nextNode = node.next
+
+      if (prevNode) prevNode.next = nextNode
+      if (nextNode) nextNode.prev = prevNode
     }
 
-    const prevNode = node.prev
-    const nextNode = node.next
-
-    if (prevNode) prevNode.next = nextNode
-    if (nextNode) nextNode.prev = prevNode
+    return node.data
   }
 
   removeHead() {
-    if (this.head !== null) {
-      const nextNode = this.head.next
-      const headData = this.head.data
-
-      if (this.tail === this.head) this.tail = null
-      this.head = null
-
-      if (nextNode !== null) {
-        nextNode.prev = null
-        this.head = nextNode
-      }
-
-      return headData
-    }
+    if (this.head !== null) return this.remove(this.head)
   }
 
   removeTail() {
-    if (this.tail !== null) {
-      const prevNode = this.tail.prev
-      const tailData = this.tail.data
-
-      if (this.tail === this.head) this.head = null
-      this.tail = null
-
-      if (prevNode !== null) {
-        prevNode.next = null
-        this.tail = prevNode
-      }
-
-      return tailData
-    }
+    if (this.tail !== null) return this.remove(this.tail)
   }
 
   size() {
