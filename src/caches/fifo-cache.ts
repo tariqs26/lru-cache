@@ -17,7 +17,6 @@ export class FIFOCache extends LRUCache {
   }
 
   get(key: PropertyKey) {
-    const currentNode = this.cache[key]
-    if (currentNode !== undefined) return currentNode.data.value
+    return this.cache[key]?.data.value
   }
 }
