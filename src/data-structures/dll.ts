@@ -12,9 +12,8 @@ export class DLL<T> {
   insert(data: T) {
     const newNode = new DLLNode<T>(data)
 
-    if (this.head === null && this.tail === null) {
-      this.head = this.tail = newNode
-    } else if (this.head !== null) {
+    if (this.head === null) this.head = this.tail = newNode
+    else {
       const next = this.head
       newNode.next = next
       next.prev = newNode
@@ -27,8 +26,7 @@ export class DLL<T> {
   insertAtTail(data: T) {
     const newNode = new DLLNode<T>(data)
 
-    if (this.head === null && this.tail === null)
-      this.head = this.tail = newNode
+    if (this.head === null) this.head = this.tail = newNode
     else if (this.tail !== null) {
       const prev = this.tail
       newNode.prev = prev
@@ -72,7 +70,7 @@ export class DLL<T> {
     if (this.tail !== null) return this.remove(this.tail)
   }
 
-  size() {
+  get size() {
     let [current, size] = [this.head, 0]
 
     while (current !== null) {
