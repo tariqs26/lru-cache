@@ -1,22 +1,19 @@
 {
   "name": "simple-kv-cache",
-  "version": "0.1.1",
-  "description": "Collection of key-value pair cache implementations",
+  "version": "1.0.0",
+  "description": "Simple implementation of an LRU cache",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup",
-    "lint": "tsc",
-    "test": "jest  --verbose --coverage"
+    "lint": "npx @biomejs/biome lint --write ./src ./test",
+    "test": "jest --verbose --coverage"
   },
   "keywords": [
     "cache",
     "key-value",
-    "fifo-cache",
-    "lru-cache",
-    "mru-cache",
-    "lfu-cache"
+    "lru-cache"
   ],
   "author": "saadt",
   "repository": {
@@ -25,14 +22,15 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/preset-env": "^7.23.8",
-    "@babel/preset-typescript": "^7.23.3",
-    "@types/jest": "^29.5.11",
-    "@types/node": "^20.11.5",
+    "@babel/core": "^7.24.8",
+    "@babel/preset-env": "^7.24.8",
+    "@babel/preset-typescript": "^7.24.7",
+    "@biomejs/biome": "1.8.3",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.10",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.3"
   }
 }
