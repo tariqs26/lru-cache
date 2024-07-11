@@ -1,4 +1,4 @@
-type CachePrimitives = string | number | boolean | null
+type CachePrimitives = string | number | boolean | null  | bigint | symbol | Date | undefined
 
 type CacheArray = Array<CachePrimitives | CacheArray | CacheObject>
 
@@ -11,8 +11,6 @@ export type CacheValue = CachePrimitives | CacheArray | CacheObject
 export type CacheOptions = {
   maxCapacity: number
 }
-
-export type CachePromise = Promise<CacheValue | undefined>
 
 export type CacheDLLData = {
   key: PropertyKey
