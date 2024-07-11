@@ -8,6 +8,7 @@
 # development purposes
 tsconfig.json
 tsup.config.ts
+biome.json
 
 # test
 /test
