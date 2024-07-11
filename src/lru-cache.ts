@@ -1,11 +1,31 @@
-import { AbsCache } from "../abstract-cache"
-import { DLLNode } from "../data-structures/dll-node"
-import { DLL } from "../data-structures/dll"
-import type { CacheDLLData, CacheValue } from "../types"
+import { DLL, type DLLNode } from "./dll"
+import type { CacheDLLData, CacheOptions, CacheValue } from "./types"
 
-export class LRUCache extends AbsCache {
+const MIN_MAX_CAPACITY = 1
+const MAX_MAX_CAPACITY = 1000000
+
+export class LRUCache {
   protected cache: Record<PropertyKey, DLLNode<CacheDLLData>> = {}
   protected list: DLL<CacheDLLData> = new DLL()
+
+  protected _capacity = 0
+  constructor(
+    protected options: CacheOptions = {
+      maxCapacity: 1000,
+    }
+  ) {
+    this.options = {
+      ...options,
+      maxCapacity: Math.min(
+        MAX_MAX_CAPACITY,
+        Math.max(MIN_MAX_CAPACITY, options.maxCapacity)
+      ),
+    }
+  }
+
+  get capacity() {
+    return this._capacity
+  }
 
   set(key: PropertyKey, value: CacheValue) {
     const currentNode = this.cache[key]
@@ -18,7 +38,7 @@ export class LRUCache extends AbsCache {
     this.evict()
   }
 
-  protected evict() {
+  private evict() {
     if (this.capacity > this.options.maxCapacity) {
       const removalData = this.list.removeTail()
 
