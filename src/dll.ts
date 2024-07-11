@@ -1,4 +1,14 @@
-import { DLLNode } from "./dll-node"
+export class DLLNode<T> {
+  constructor(
+    public data: T,
+    public prev: DLLNode<T> | null = null,
+    public next: DLLNode<T> | null = null
+  ) {
+    this.data = data
+    this.prev = prev
+    this.next = next
+  }
+}
 
 export class DLL<T> {
   constructor(
@@ -18,20 +28,6 @@ export class DLL<T> {
       newNode.next = next
       next.prev = newNode
       this.head = newNode
-    }
-
-    return newNode
-  }
-
-  insertAtTail(data: T) {
-    const newNode = new DLLNode<T>(data)
-
-    if (this.head === null) this.head = this.tail = newNode
-    else if (this.tail !== null) {
-      const prev = this.tail
-      newNode.prev = prev
-      prev.next = newNode
-      this.tail = newNode
     }
 
     return newNode
@@ -60,10 +56,6 @@ export class DLL<T> {
     }
 
     return node.data
-  }
-
-  removeHead() {
-    if (this.head !== null) return this.remove(this.head)
   }
 
   removeTail() {

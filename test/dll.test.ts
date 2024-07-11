@@ -1,5 +1,4 @@
-import { DLL } from "../src/data-structures/dll"
-import { DLLNode } from "../src/data-structures/dll-node"
+import { DLL, DLLNode } from "../src/dll"
 
 describe("DLL module", () => {
   let list: DLL<number>
@@ -18,18 +17,6 @@ describe("DLL module", () => {
     expect(list.size).toBe(2)
     expect(list.head?.data).toBe(20)
     expect(list.tail?.data).toBe(10)
-  })
-
-  test("insertAtTail", () => {
-    list.insertAtTail(10)
-    expect(list.size).toBe(1)
-    expect(list.head?.data).toBe(10)
-    expect(list.tail?.data).toBe(10)
-
-    list.insertAtTail(20)
-    expect(list.size).toBe(2)
-    expect(list.head?.data).toBe(10)
-    expect(list.tail?.data).toBe(20)
   })
 
   test("remove", () => {
@@ -62,15 +49,6 @@ describe("DLL module", () => {
     expect(headData).toEqual(30)
     expect(list.head).toBeNull()
     expect(list.size).toBe(0)
-  })
-
-  test("removeHead", () => {
-    const head = list.insert(10)
-    list.insert(20)
-    const removedData = list.removeHead()
-    expect(list.head).toStrictEqual(head)
-    expect(list.size).toBe(1)
-    expect(removedData).toBe(20)
   })
 
   test("removeTail", () => {
