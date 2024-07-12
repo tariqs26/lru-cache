@@ -5,10 +5,10 @@ const MIN_MAX_CAPACITY = 1
 const MAX_MAX_CAPACITY = 1000000
 
 export class LRUCache {
+  private _capacity = 0
   private cache: Record<PropertyKey, DLLNode<CacheDLLData>> = {}
   private list: DLL<CacheDLLData> = new DLL()
 
-  private _capacity = 0
   constructor(
     private options: CacheOptions = {
       maxCapacity: 1000,
