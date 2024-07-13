@@ -1,5 +1,5 @@
 import { DLL, type DLLNode } from "./dll"
-import type { CacheDLLData, CacheOptions, CacheValue } from "./types"
+import type { CacheDLLData, CacheOptions } from "./types"
 
 const MIN_MAX_CAPACITY = 1
 const MAX_MAX_CAPACITY = 1000000
@@ -27,7 +27,7 @@ export class LRUCache {
     return this._capacity
   }
 
-  set(key: PropertyKey, value: CacheValue) {
+  set(key: PropertyKey, value: any) {
     const currentNode = this.cache[key]
 
     if (currentNode !== undefined) this.list.remove(currentNode)
