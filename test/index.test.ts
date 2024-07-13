@@ -1,5 +1,4 @@
-import type { CacheOptions } from "../src"
-import { LRUCache } from "../src"
+import { type CacheOptions, LRUCache } from "../src"
 
 const cacheOptions: CacheOptions = {
   maxCapacity: 3,
