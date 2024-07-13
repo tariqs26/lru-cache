@@ -46,8 +46,9 @@ export class LRUCache {
     const currentNode = this.cache.get(key)
     if (currentNode !== undefined) {
       this.list.remove(currentNode)
-      this.list.insert(currentNode.data)
-      return currentNode.data.value
+      const newNode = this.list.insert(currentNode.data)
+      this.cache.set(key, newNode)
+      return newNode.data.value
     }
   }
 
