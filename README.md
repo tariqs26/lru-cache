@@ -1,4 +1,4 @@
-# Simple Cache
+# LRU Cache
 
 LRU cache implemented with a hashmap and doubly linked list.
 
