@@ -5,7 +5,7 @@
 
 /.vscode
 
-# development purposes
+# development 
 tsconfig.json
 tsup.config.ts
 biome.json
