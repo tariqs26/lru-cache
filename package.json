@@ -1,7 +1,7 @@
 {
   "name": "simple-kv-cache",
   "version": "1.2.1",
-  "description": "Key-Value Cache with LRU eviction policy",
+  "description": "LRU Cache",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -18,7 +18,7 @@
   "author": "saadt",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tariqs26/simple-cache.git"
+    "url": "git+https://github.com/tariqs26/lru-cache.git"
   },
   "license": "MIT",
   "devDependencies": {
