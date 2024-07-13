@@ -1,25 +1,15 @@
 import { DLL, type DLLNode } from "./dll"
 import type { CacheDLLData, CacheOptions } from "./types"
 
-const MIN_MAX_CAPACITY = 1
-const MAX_MAX_CAPACITY = 1000000
-
 export class LRUCache {
   private _capacity = 0
-  private cache: Record<PropertyKey, DLLNode<CacheDLLData>> = {}
+  private cache = new Map<PropertyKey, DLLNode<CacheDLLData>>()
   private list: DLL<CacheDLLData> = new DLL()
 
-  constructor(
-    private options: CacheOptions = {
-      maxCapacity: 1000,
-    }
-  ) {
+  constructor(private options: CacheOptions = { maxCapacity: 1000 }) {
     this.options = {
       ...options,
-      maxCapacity: Math.min(
-        MAX_MAX_CAPACITY,
-        Math.max(MIN_MAX_CAPACITY, options.maxCapacity)
-      ),
+      maxCapacity: Math.min(1000000, Math.max(1, options.maxCapacity)),
     }
   }
 
@@ -28,12 +18,12 @@ export class LRUCache {
   }
 
   set(key: PropertyKey, value: any) {
-    const currentNode = this.cache[key]
+    const currentNode = this.cache.get(key)
 
     if (currentNode !== undefined) this.list.remove(currentNode)
     else this._capacity++
 
-    this.cache[key] = this.list.insert({ key, value })
+    this.cache.set(key, this.list.insert({ key, value }))
 
     this.evict()
   }
@@ -43,14 +33,14 @@ export class LRUCache {
       const removalData = this.list.removeTail()
 
       if (removalData !== undefined) {
-        delete this.cache[removalData.key]
+        this.cache.delete(removalData.key)
         this._capacity--
       }
     }
   }
 
   get(key: PropertyKey) {
-    const currentNode = this.cache[key]
+    const currentNode = this.cache.get(key)
     if (currentNode !== undefined) {
       this.list.remove(currentNode)
       this.list.insert(currentNode.data)
@@ -59,16 +49,16 @@ export class LRUCache {
   }
 
   remove(key: PropertyKey) {
-    const currentNode = this.cache[key]
+    const currentNode = this.cache.get(key)
     if (currentNode !== undefined) {
       this.list.remove(currentNode)
-      delete this.cache[key]
+      this.cache.delete(key)
       this._capacity--
     }
   }
 
   clear() {
-    this.cache = {}
+    this.cache = new Map()
     this.list = new DLL()
     this._capacity = 0
   }
