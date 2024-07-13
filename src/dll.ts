@@ -43,10 +43,8 @@ export class DLL<T> {
       this.head = nextNode
     } else if (node === this.tail) {
       const prevNode = this.tail.prev
-      if (prevNode) {
-        prevNode.next = null
-        this.tail = prevNode
-      }
+      prevNode!.next = null
+      this.tail = prevNode
     } else {
       const prevNode = node.prev
       const nextNode = node.next
