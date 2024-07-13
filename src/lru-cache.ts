@@ -22,7 +22,6 @@ export class LRUCache {
 
   set(key: PropertyKey, value: any) {
     const currentNode = this.cache.get(key)
-
     if (currentNode !== undefined) this.list.remove(currentNode)
     else this._capacity++
 
@@ -34,7 +33,6 @@ export class LRUCache {
   private evict() {
     if (this.capacity > this.options.maxCapacity) {
       const removalData = this.list.removeTail()
-
       if (removalData !== undefined) {
         this.cache.delete(removalData.key)
         this._capacity--
