@@ -60,7 +60,7 @@ export class LRUCache {
   }
 
   clear() {
-    this.cache = new Map()
+    this.cache.clear()
     this.list = new DLL()
     this._capacity = 0
   }
