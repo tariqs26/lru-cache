@@ -1,6 +1,6 @@
 {
   "name": "simple-kv-cache",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Key-Value Cache with LRU eviction policy",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
