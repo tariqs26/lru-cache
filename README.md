@@ -1,14 +1,13 @@
 # Simple Cache
 
-A simple lightweight LRU cache implementation using a doubly linked list and hashmap.
+Simple lightweight LRU cache implementation using a hashmap and doubly linked list.
 
 ## Implementation
 
-Implementation utilizes a hashmap to associate keys with doubly linked list nodes, and doubly linked list to arrange entries accordingly. This structure enables a constant running time complexity for all methods, `get`, `set`, `remove`, and `clear`.
+Hashmap is used to associate keys with doubly linked list nodes, and doubly linked list to arrange entries according to access recency.
 
 - New entries are inserted at the head of the list
-- Least recently used entries are removed
-- When the cache reaches its maximum capacity the last node accessed by the tail pointer is removed
+- When the cache reaches its maximum capacity the last node (least recently used) accessed by the tail pointer is removed
 - Subsequent access to entries results in their relocation to the head of the list, ensuring a continuous update of access recency
 
 ## Installation
