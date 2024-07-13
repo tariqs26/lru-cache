@@ -1,14 +1,14 @@
 # Simple Cache
 
-Simple lightweight LRU cache implementation using a hashmap and doubly linked list.
+LRU cache implemented with a hashmap and doubly linked list.
 
 ## Implementation
 
-Hashmap is used to associate keys with doubly linked list nodes, and doubly linked list to arrange entries according to access recency.
-
-- New entries are inserted at the head of the list
-- When the cache reaches its maximum capacity the last node (least recently used) accessed by the tail pointer is removed
-- Subsequent access to entries results in their relocation to the head of the list, ensuring a continuous update of access recency
+- **Hashmap**: Associates keys with doubly linked list nodes.
+- **Doubly Linked List**: Manages entries by access recency.
+  - New entries are inserted at the head.
+  - When the cache is full, the tail (least recently used) entry is removed.
+  - Accessing an entry moves it to the head, updating its recency.
 
 ## Installation
 
@@ -22,10 +22,10 @@ npm i simple-kv-cache
 import { LRUCache } from "simple-kv-cache"
 
 const cache = new LRUCache({
-  maxCapacity: 5000, // Specify options
+  maxCapacity: 5000, // default is 1000
 })
 
-// Store value
+// store value
 cache.set("users", [
   {
     id: 1,
@@ -33,13 +33,13 @@ cache.set("users", [
   },
 ])
 
-// Retrieve value
+// retrieve value
 cache.get("users")
 
-// Remove value
+// remove value
 cache.remove("users")
 
-// Remove all values
+// remove all values
 cache.clear()
 ```
 
