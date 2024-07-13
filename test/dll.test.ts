@@ -20,14 +20,14 @@ describe("DLL module", () => {
   })
 
   test("remove", () => {
-    // Removing node from empty list
+    // removing node from empty list
     expect(list.remove(new DLLNode(20))).toBeUndefined()
 
     const tail = list.insert(10)
     const toRemove = list.insert(20)
     const head = list.insert(30)
 
-    // Node removed is between head and tail
+    // removing node between head and tail
     const middleNodeData = list.remove(toRemove)
 
     expect(middleNodeData).toBe(20)
@@ -35,7 +35,7 @@ describe("DLL module", () => {
     expect(list.tail).toStrictEqual(tail)
     expect(list.size).toBe(2)
 
-    // Node removed is the tail
+    // removing tail node
     const tailData = list.remove(tail)
 
     expect(tailData).toBe(10)
@@ -43,7 +43,7 @@ describe("DLL module", () => {
     expect(list.tail).toStrictEqual(head)
     expect(list.size).toBe(1)
 
-    // Node removed is the head
+    // removing head node
     const headData = list.remove(head)
 
     expect(headData).toEqual(30)
@@ -58,5 +58,8 @@ describe("DLL module", () => {
     expect(list.tail).toStrictEqual(tail)
     expect(list.size).toBe(1)
     expect(removedData).toBe(10)
+    expect(list.removeTail()).toBe(20)
+    expect(list.size).toBe(0)
+    expect(list.removeTail()).toBeUndefined()
   })
 })
