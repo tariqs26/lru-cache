@@ -9,7 +9,10 @@ export class LRUCache {
   constructor(private options: CacheOptions = { maxCapacity: 1000 }) {
     this.options = {
       ...options,
-      maxCapacity: Math.min(1000000, Math.max(1, options.maxCapacity)),
+      maxCapacity: Math.min(
+        Number.MAX_SAFE_INTEGER,
+        Math.max(1, options.maxCapacity)
+      ),
     }
   }
 
