@@ -63,12 +63,9 @@ export class DLL<T> {
   }
 
   get size() {
-    let [current, size] = [this.head, 0]
-
-    while (current !== null) {
+    let size = 0
+    for (let current = this.head; current !== null; current = current.next)
       size++
-      current = current.next
-    }
 
     return size
   }
