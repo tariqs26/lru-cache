@@ -42,9 +42,11 @@ describe("Cache module", () => {
 
   it("remove", () => {
     cache.set("count", 0)
+
     cache.remove("count")
     expect(cache.get("count")).toBeUndefined()
     expect(cache.capacity).toBe(0)
+
     cache.remove("key_not_in_cache")
     expect(cache.capacity).toBe(0)
   })
@@ -53,6 +55,7 @@ describe("Cache module", () => {
     cache.set("count", 0)
     cache.set("name", "Test Name")
     cache.clear()
+
     expect(cache.get("count")).toBeUndefined()
     expect(cache.get("name")).toBeUndefined()
     expect(cache.capacity).toBe(0)
