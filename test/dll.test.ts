@@ -28,25 +28,19 @@ describe("DLL module", () => {
     const head = list.insert(30)
 
     // removing node between head and tail
-    const middleNodeData = list.remove(toRemove)
-
-    expect(middleNodeData).toBe(20)
+    expect(list.remove(toRemove)).toBe(20)
     expect(list.head).toStrictEqual(head)
     expect(list.tail).toStrictEqual(tail)
     expect(list.size).toBe(2)
 
     // removing tail node
-    const tailData = list.remove(tail)
-
-    expect(tailData).toBe(10)
+    expect(list.remove(tail)).toBe(10)
     expect(list.head).toStrictEqual(head)
     expect(list.tail).toStrictEqual(head)
     expect(list.size).toBe(1)
 
     // removing head node
-    const headData = list.remove(head)
-
-    expect(headData).toEqual(30)
+    expect(list.remove(head)).toEqual(30)
     expect(list.head).toBeNull()
     expect(list.size).toBe(0)
   })
@@ -54,12 +48,23 @@ describe("DLL module", () => {
   test("removeTail", () => {
     list.insert(10)
     const tail = list.insert(20)
-    const removedData = list.removeTail()
+
+    expect(list.removeTail()).toBe(10)
     expect(list.tail).toStrictEqual(tail)
     expect(list.size).toBe(1)
-    expect(removedData).toBe(10)
+
     expect(list.removeTail()).toBe(20)
     expect(list.size).toBe(0)
     expect(list.removeTail()).toBeUndefined()
+  })
+
+  test("clear", () => {
+    list.insert(10)
+    list.insert(20)
+    list.clear()
+
+    expect(list.size).toBe(0)
+    expect(list.head).toBeNull()
+    expect(list.tail).toBeNull()
   })
 })
