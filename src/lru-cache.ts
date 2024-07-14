@@ -61,7 +61,7 @@ export class LRUCache {
 
   clear() {
     this.cache.clear()
-    this.list = new DLL()
+    this.list.clear()
     this._capacity = 0
   }
 }
