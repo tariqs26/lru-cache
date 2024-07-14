@@ -1,6 +1,6 @@
 {
   "name": "simple-kv-cache",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "LRU Cache",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
