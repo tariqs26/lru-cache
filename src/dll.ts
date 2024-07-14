@@ -3,25 +3,17 @@ export class DLLNode<T> {
     public data: T,
     public prev: DLLNode<T> | null = null,
     public next: DLLNode<T> | null = null
-  ) {
-    this.data = data
-    this.prev = prev
-    this.next = next
-  }
+  ) {}
 }
 
 export class DLL<T> {
   constructor(
     public head: DLLNode<T> | null = null,
     public tail: DLLNode<T> | null = null
-  ) {
-    this.head = head
-    this.tail = tail
-  }
+  ) {}
 
   insert(data: T) {
     const newNode = new DLLNode<T>(data)
-
     if (this.head === null) this.head = this.tail = newNode
     else {
       const next = this.head
@@ -29,30 +21,20 @@ export class DLL<T> {
       next.prev = newNode
       this.head = newNode
     }
-
     return newNode
   }
 
   remove(node: DLLNode<T>) {
     if (this.head === null) return
-
-    if (this.head === this.tail) {
-      this.head = this.tail = null
-    } else if (node === this.head) {
-      const nextNode = this.head.next
-      this.head = nextNode
-    } else if (node === this.tail) {
-      const prevNode = this.tail.prev
-      prevNode!.next = null
-      this.tail = prevNode
+    if (this.head === this.tail) this.head = this.tail = null
+    else if (node === this.head) this.head = this.head.next
+    else if (node === this.tail) {
+      this.tail = this.tail.prev
+      this.tail!.next = null
     } else {
-      const prevNode = node.prev
-      const nextNode = node.next
-
-      if (prevNode) prevNode.next = nextNode
-      if (nextNode) nextNode.prev = prevNode
+      if (node.prev) node.prev.next = node.next
+      if (node.next) node.next.prev = node.prev
     }
-
     return node.data
   }
 
@@ -64,7 +46,10 @@ export class DLL<T> {
     let size = 0
     for (let current = this.head; current !== null; current = current.next)
       size++
-
     return size
+  }
+
+  clear() {
+    this.head = this.tail = null
   }
 }
