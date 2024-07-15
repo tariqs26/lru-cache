@@ -30,16 +30,12 @@ export class DLL<T> {
     else if (node === this.head) this.head = this.head.next
     else if (node === this.tail) {
       this.tail = this.tail.prev
-      this.tail!.next = null
+      if (this.tail) this.tail.next = null
     } else {
       if (node.prev) node.prev.next = node.next
       if (node.next) node.next.prev = node.prev
     }
     return node.data
-  }
-
-  removeTail() {
-    if (this.tail !== null) return this.remove(this.tail)
   }
 
   get size() {
