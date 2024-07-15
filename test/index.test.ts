@@ -38,6 +38,11 @@ describe("Cache module", () => {
     expect(cache.get("user")).toBeUndefined()
     cache.set("count", 0)
     expect(cache.get("count")).toBe(0)
+    cache.set("name", "Test Name")
+    cache.set("enabled", true)
+    cache.get("count")
+    cache.set("gpu", "RTX 4090")
+    expect(cache.get("name")).toBeUndefined()
   })
 
   it("remove", () => {
