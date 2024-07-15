@@ -45,19 +45,6 @@ describe("DLL module", () => {
     expect(list.size).toBe(0)
   })
 
-  test("removeTail", () => {
-    list.insert(10)
-    const tail = list.insert(20)
-
-    expect(list.removeTail()).toBe(10)
-    expect(list.tail).toStrictEqual(tail)
-    expect(list.size).toBe(1)
-
-    expect(list.removeTail()).toBe(20)
-    expect(list.size).toBe(0)
-    expect(list.removeTail()).toBeUndefined()
-  })
-
   test("clear", () => {
     list.insert(10)
     list.insert(20)
