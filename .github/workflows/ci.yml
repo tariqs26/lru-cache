@@ -22,6 +22,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
         run: npm ci
+      - name: OS and Node.js Version
+        run: echo OS:${{ matrix.os }} NODE_VERSION:${{ matrix.node-version }}
       - name: Format Check
         if: ${{(matrix.os == 'ubuntu-latest') && (matrix.node-version == '22.x')}}
         run: npm run format:check
