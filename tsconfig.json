@@ -1,32 +1,22 @@
 {
   "compilerOptions": {
-    /* Base options*/
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "target": "ES2022",
-    "resolveJsonModule": true,
-    "moduleDetection": "force",
-    "isolatedModules": true,
-
-    /* Strictness */
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "noUncheckedIndexedAccess": true,
-
-    /* Transpilation */
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
     "declaration": true,
-    "noEmit": true,
-    "outDir": "dist",
-    "rootDir": "src",
-
-    /* Style */
+    "esModuleInterop": true,
+    "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
-
-    /* Libraries */
-    "lib": ["ES2022"]
+    "module": "NodeNext",
+    "moduleDetection": "force",
+    "moduleResolution": "NodeNext",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "ES2022"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "test"]
