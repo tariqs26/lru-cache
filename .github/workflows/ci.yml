@@ -8,8 +8,8 @@ jobs:
   release:
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [18.x, 20.x, 22.x]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -22,7 +22,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
         run: npm ci
+      - name: Format Check
+        if: ${{(matrix.os == 'ubuntu-latest') && (matrix.node-version == '22.x')}}
+        run: npm run format:check
       - name: Lint
+        if: ${{(matrix.os == 'ubuntu-latest') && (matrix.node-version == '22.x')}}
         run: npm run lint
+      - name: Build
+        run: npm run build
       - name: Test
         run: npm run test
