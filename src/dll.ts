@@ -12,6 +12,13 @@ export class DLL<T> {
     public tail: DLLNode<T> | null = null
   ) {}
 
+  get size() {
+    let size = 0
+    for (let current = this.head; current !== null; current = current.next)
+      size++
+    return size
+  }
+
   insert(data: T) {
     const newNode = new DLLNode<T>(data)
     if (this.head === null) this.head = this.tail = newNode
@@ -36,13 +43,6 @@ export class DLL<T> {
       if (node.next) node.next.prev = node.prev
     }
     return node.data
-  }
-
-  get size() {
-    let size = 0
-    for (let current = this.head; current !== null; current = current.next)
-      size++
-    return size
   }
 
   clear() {
