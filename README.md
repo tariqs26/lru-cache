@@ -41,6 +41,9 @@ cache.remove("users")
 
 // remove all values
 cache.clear()
+
+// support for generic types
+const routeCache = new LRUCache<"/users" | "/posts">()
 ```
 
 ## Contributing
