@@ -7,13 +7,11 @@
   "scripts": {
     "build": "tsup",
     "lint": "npx @biomejs/biome lint --write ./src ./test",
+    "format": "npx @biomejs/biome format --write",
+    "format:check": "npx @biomejs/biome format",
     "test": "jest --verbose --coverage"
   },
-  "keywords": [
-    "cache",
-    "key-value",
-    "lru-cache"
-  ],
+  "keywords": ["cache", "key-value", "lru-cache"],
   "author": "saadt",
   "repository": {
     "type": "git",
