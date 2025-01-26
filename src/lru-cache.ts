@@ -4,7 +4,7 @@ import type { CacheOptions } from "./types"
 export class LRUCache<TKey = unknown, TValue = unknown> {
   private _capacity = 0
   private cache = new Map<TKey, DLLNode<{ key: TKey; value: TValue }>>()
-  private list: DLL<{ key: TKey; value: TValue }> = new DLL()
+  private list = new DLL<{ key: TKey; value: TValue }>()
 
   constructor(private options: CacheOptions = { maxCapacity: 1000 }) {
     this.options = {
