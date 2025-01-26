@@ -14,3 +14,5 @@ biome.json
 /test
 /coverage
 babel.config.cjs
+
+/.github
