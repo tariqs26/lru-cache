@@ -1,10 +1,10 @@
 import { DLL, type DLLNode } from "./dll"
-import type { CacheDLLData, CacheOptions } from "./types"
+import type { CacheOptions } from "./types"
 
-export class LRUCache {
+export class LRUCache<TKey = unknown, TValue = unknown> {
   private _capacity = 0
-  private cache = new Map<PropertyKey, DLLNode<CacheDLLData>>()
-  private list: DLL<CacheDLLData> = new DLL()
+  private cache = new Map<TKey, DLLNode<{ key: TKey; value: TValue }>>()
+  private list: DLL<{ key: TKey; value: TValue }> = new DLL()
 
   constructor(private options: CacheOptions = { maxCapacity: 1000 }) {
     this.options = {
@@ -20,7 +20,7 @@ export class LRUCache {
     return this._capacity
   }
 
-  set(key: PropertyKey, value: unknown) {
+  set(key: TKey, value: TValue) {
     const currentNode = this.cache.get(key)
     if (currentNode !== undefined) this.list.remove(currentNode)
     else this._capacity++
@@ -37,7 +37,7 @@ export class LRUCache {
     this._capacity--
   }
 
-  get(key: PropertyKey) {
+  get(key: TKey) {
     const currentNode = this.cache.get(key)
     if (currentNode === undefined) return
     this.list.remove(currentNode)
@@ -46,7 +46,7 @@ export class LRUCache {
     return newNode.data.value
   }
 
-  remove(key: PropertyKey) {
+  remove(key: TKey) {
     const currentNode = this.cache.get(key)
     if (currentNode === undefined) return
     this.list.remove(currentNode)
