@@ -7,7 +7,7 @@ describe("DLL module", () => {
     list = new DLL()
   })
 
-  test("insert", () => {
+  it("insert", () => {
     list.insert(10)
     expect(list.size).toBe(1)
     expect(list.head?.data).toBe(10)
@@ -19,7 +19,7 @@ describe("DLL module", () => {
     expect(list.tail?.data).toBe(10)
   })
 
-  test("remove", () => {
+  it("remove", () => {
     // removing node from empty list
     expect(list.remove(new DLLNode(20))).toBeUndefined()
 
@@ -45,7 +45,7 @@ describe("DLL module", () => {
     expect(list.size).toBe(0)
   })
 
-  test("clear", () => {
+  it("clear", () => {
     list.insert(10)
     list.insert(20)
     list.clear()
