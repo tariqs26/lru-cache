@@ -26,12 +26,7 @@ const cache = new LRUCache({
 })
 
 // store value
-cache.set("users", [
-  {
-    id: 1,
-    name: "John Doe",
-  },
-])
+cache.set("users", [{ id: 1, name: "John Doe" }])
 
 // retrieve value
 cache.get("users")
@@ -44,6 +39,7 @@ cache.clear()
 
 // support for generic types
 const routeCache = new LRUCache<"/users" | "/posts">()
+const cartCache = new LRUCache<string, Cart>()
 ```
 
 ## Contributing
